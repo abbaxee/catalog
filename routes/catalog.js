@@ -5,7 +5,7 @@ var router = express.Router();
 var book_controller = require('../controllers/bookController');
 var author_controller = require('../controllers/authorController');
 var genre_controller = require('../controllers/genreController');
-var book_instance_controller = require('../controllers/bookinstanceController');
+var tag_controller = require('../controllers/tagController');
 
 /// BOOK ROUTES ///
 
@@ -91,27 +91,31 @@ router.get('/genres', genre_controller.genre_list);
 /// BOOKINSTANCE ROUTES ///
 
 /* GET request for creating a BookInstance. NOTE This must come before route that displays BookInstance (uses id) */
-router.get('/bookinstance/create', book_instance_controller.bookinstance_create_get);
+router.get('/tag/create', tag_controller.tag_create_get);
 
 /* POST request for creating BookInstance. */
-router.post('/bookinstance/create', book_instance_controller.bookinstance_create_post);
+router.post('/tag/create', tag_controller.tag_create_post);
 
-/* GET request to delete BookInstance. */
-router.get('/bookinstance/:id/delete', book_instance_controller.bookinstance_delete_get);
+/* GET request to delete Tag. */
+router.get('/tag/:id/delete', tag_controller.tag_delete_get);
 
 // POST request to delete BookInstance
-router.post('/bookinstance/:id/delete', book_instance_controller.bookinstance_delete_post);
+router.post('/tag/:id/delete', tag_controller.tag_delete_post);
+okinstance
 
-/* GET request to update BookInstance. */
-router.get('/bookinstance/:id/update', book_instance_controller.bookinstance_update_get);
+/* GET request for one Tag. */
+router.get('/tag/:id', tag_controller.tag_detail);
 
-// POST request to update BookInstance
-router.post('/bookinstance/:id/update', book_instance_controller.bookinstance_update_post);
+/* GET request for list of all Tags. */
+router.get('/tag', tag_controller.tag_list);
 
-/* GET request for one BookInstance. */
-router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail);
+// TODO
+// /* GET request to update Tags. */
+// router.get('/tag/:id/update', );
 
-/* GET request for list of all BookInstance. */
-router.get('/bookinstances', book_instance_controller.bookinstance_list);
+// // POST request to update Tag
+// router.post('/tag/:id/update', );
+
+
 
 module.exports = router;

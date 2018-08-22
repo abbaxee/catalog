@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+  h1 Tag: #{tag.name}
+  
+  each val in tag.books
+    p #[strong Title:]  
+      a(href=val.url) #{val.title}
+  
+  hr
+  p
+    a(href=tag.url+'/delete') Delete Tag
+  p
+    a(href=tag.url+'/update') Update Tag
+
+  
