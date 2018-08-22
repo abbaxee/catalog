@@ -101,7 +101,6 @@ router.get('/tag/:id/delete', tag_controller.tag_delete_get);
 
 // POST request to delete BookInstance
 router.post('/tag/:id/delete', tag_controller.tag_delete_post);
-okinstance
 
 /* GET request for one Tag. */
 router.get('/tag/:id', tag_controller.tag_detail);
