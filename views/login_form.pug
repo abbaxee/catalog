@@ -1,0 +1,35 @@
+extends form_layout
+
+block content
+  .container.white.z-depth-2  
+    ul.tabs.teal
+      li.tab.col.s6
+        a.white-text.active #{title}
+      
+    .row
+      form(method='POST', action='').col.s12
+        .form-container
+          h5.teal-text Enter email and password
+          .row
+            .input-field.col.s12
+              input#email.validate(type='email', name='username')
+              label(for='email') Email
+          .row
+            .input-field.col.s12
+              input#password.validate(type='password' name='password')
+              label(for='password') Password
+          
+          br
+          .center
+            button.btn.waves-effect.waves-light.teal(type='submit') Login 
+            br
+            br
+            a(href='/users/register') Create an account?
+
+  script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js')
+  script.
+    $(document).ready(function(){
+      $('.sidenav').sidenav();
+    });
+      
