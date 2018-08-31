@@ -9,3 +9,24 @@ NOTE:
 ------
 PLACE HERE YOUR OWN CSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+html, body {
+	height: 100%;
+	margin: 0;
+  }
+  section#content {
+	min-height: 100%;
+  }
+  .content {
+	padding: 20px;
+	padding-bottom: 50px;
+  }
+  .footer {
+	height: 50px;
+	margin-top: -50px;
+  }
+@media screen and (max-width: 900px) {
+	#header .header-search-wrapper {
+		margin: 10px auto 0 100px;
+		width: calc(100% - 190px);
+	}
+}

@@ -8,7 +8,7 @@ block content
         br
         h5 #{title}: !{book.title}
 
-        img(style='max-height: 320px' src='/images/' +book.image, alt="book img")
+        img(style='max-height: 320px; max-width: 250px' src='/images/' +book.image, alt="book img")
         
         h5 
           i.material-icons.prefix.blue.circle person 
@@ -35,6 +35,8 @@ block content
             i.material-icons.left edit
             | Update Book
           | &nbsp;&nbsp;&nbsp;&nbsp;
+          br
+          br
           a.waves-effect.waves-light.btn.blue(href=book.url+'/delete')
             i.material-icons.left delete
             | Delete Book

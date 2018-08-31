@@ -51,7 +51,7 @@ html(lang='en')
                 h1.logo-wrapper
                   a.brand-logo.darken-1(href='index.html')
                     span.logo-text.hide-on-med-and-down Smart Library
-            .header-search-wrapper.hide-on-med-and-down
+            .header-search-wrapper
               i.material-icons search
               input.header-search-input.z-depth-2(type='text', name='Search', placeholder='Explore Library')
             ul.right.hide-on-med-and-down
@@ -106,10 +106,10 @@ html(lang='en')
                   a.waves-effect.waves-cyan(href='/catalog/tag')
                     i.material-icons format_size
                     span.nav-text Tags
-          a.sidebar-collapse.btn-floating.btn-medium.waves-effect.waves-light.hide-on-large-only(href='#', data-activates='slide-out')
+          a.sidebar-collapse.btn-floating.red.btn-medium.waves-effect.waves-light.hide-on-large-only(href='#', data-activates='slide-out')
             i.material-icons menu
         // END LEFT SIDEBAR NAV
         // ////////////////////////////////////////////////////////////////////////////
         // START CONTENT
         != messages()
-        block content
+      block content

@@ -1,112 +1,114 @@
 extends layout
 
 block content
-    section#content
-      // start container
+  section#content
+    // start container
+    .container
+      // card stats start
+      #card-stats
+        .row.mt-1
+          .col.s12.m6.l6
+            .card.gradient-45deg-light-blue-cyan.gradient-shadow.min-height-100.white-text
+              .padding-4
+                .col.s7.m7
+                  i.material-icons.background-round.mt-5 import_contacts
+                  p BOOK COUNT
+                .col.s5.m5.right-align
+                  h1.mb-0 !{data.book_count}
+          .col.s12.m6.l6
+            .card.gradient-45deg-red-pink.gradient-shadow.min-height-100.white-text
+              .padding-4
+                .col.s7.m7
+                  i.material-icons.background-round.mt-5 perm_identity
+                  p Authors Count
+                .col.s5.m5.right-align
+                  h1.mb-0 !{data.author_count}
+          .col.s12.m6.l6
+            .card.gradient-45deg-amber-amber.gradient-shadow.min-height-100.white-text
+              .padding-4
+                .col.s7.m7
+                  i.material-icons.background-round.mt-5 folder
+                  p Genres
+                .col.s5.m5.right-align
+                  h1.mb-0 !{data.genre_count}
+          .col.s12.m6.l6
+            .card.gradient-45deg-green-teal.gradient-shadow.min-height-100.white-text
+              .padding-4
+                .col.s7.m7
+                  i.material-icons.background-round.mt-5 format_size
+                  p Tags
+                .col.s5.m5.right-align
+                  h1.mb-0 !{data.tag_count}
+      // work collections start
+      #work-collections
+        .row
+          .col.s12.m12.l6
+            ul#projects-collection.collection.z-depth-1
+              li.collection-item.avatar
+                i.material-icons.cyan.circle card_travel
+                h4.collection-header Add to Catalog
+              li.collection-item
+                a(href='/catalog/book/create')
+                  .row
+                    .col.s9
+                      p.collections-title Create New Book
+                    .col.s3
+                      i.material-icons keyboard_arrow_right
+              li.collection-item
+                a(href='/catalog/author/create')
+                  .row
+                    .col.s9
+                      p.collections-title Create New Author
+                    .col.s3
+                      i.material-icons keyboard_arrow_right
+              li.collection-item
+                a(href='/catalog/genre/create')
+                  .row
+                    .col.s9
+                      p.collections-title Create New Genre
+                    .col.s3
+                      i.material-icons keyboard_arrow_right
+              li.collection-item
+                a(href='/catalog/tag/create')
+                  .row
+                    .col.s9
+                      p.collections-title Create New Tag
+                    .col.s3
+                      i.material-icons keyboard_arrow_right
+      // work collections end
+      .fixed-action-btn.click-to-toggle
+        a.btn-floating.btn-large.red
+          i.large.material-icons.right add
+        ul
+          li
+            a(href='/catalog/book/create').btn-floating.blue
+              i.material-icons queue
+          li
+            a(href='/catalog/author/create').btn-floating.red
+              i.material-icons person_add
+          li
+            a(href='/catalog/genre/create').btn-floating.yellow.darken-1
+              i.material-icons playlist_add
+          li
+            a(href='/catalog/tag/create').btn-floating.green
+              i.material-icons title
+          // ////////////////////////////////////////////////////////////////////////////
+        // end container
+    div.push
+      // END CONTENT
+    // END WRAPPER
+  // END MAIN
+  // ////////////////////////////////////////////////////////////////////////////
+  // START FOOTER
+  footer.page-footer.gradient-45deg-light-blue-cyan
+    .footer-copyright
       .container
-        // card stats start
-        #card-stats
-          .row.mt-1
-            .col.s12.m6.l6
-              .card.gradient-45deg-light-blue-cyan.gradient-shadow.min-height-100.white-text
-                .padding-4
-                  .col.s7.m7
-                    i.material-icons.background-round.mt-5 import_contacts
-                    p BOOK COUNT
-                  .col.s5.m5.right-align
-                    h1.mb-0 !{data.book_count}
-            .col.s12.m6.l6
-              .card.gradient-45deg-red-pink.gradient-shadow.min-height-100.white-text
-                .padding-4
-                  .col.s7.m7
-                    i.material-icons.background-round.mt-5 perm_identity
-                    p Authors Count
-                  .col.s5.m5.right-align
-                    h1.mb-0 !{data.author_count}
-            .col.s12.m6.l6
-              .card.gradient-45deg-amber-amber.gradient-shadow.min-height-100.white-text
-                .padding-4
-                  .col.s7.m7
-                    i.material-icons.background-round.mt-5 folder
-                    p Genres
-                  .col.s5.m5.right-align
-                    h1.mb-0 !{data.genre_count}
-            .col.s12.m6.l6
-              .card.gradient-45deg-green-teal.gradient-shadow.min-height-100.white-text
-                .padding-4
-                  .col.s7.m7
-                    i.material-icons.background-round.mt-5 format_size
-                    p Tags
-                  .col.s5.m5.right-align
-                    h1.mb-0 !{data.tag_count}
-        // work collections start
-        #work-collections
-          .row
-            .col.s12.m12.l6
-              ul#projects-collection.collection.z-depth-1
-                li.collection-item.avatar
-                  i.material-icons.cyan.circle card_travel
-                  h4.collection-header Add to Catalog
-                li.collection-item
-                  a(href='/catalog/book/create')
-                    .row
-                      .col.s9
-                        p.collections-title Create New Book
-                      .col.s3
-                        i.material-icons keyboard_arrow_right
-                li.collection-item
-                  a(href='/catalog/author/create')
-                    .row
-                      .col.s9
-                        p.collections-title Create New Author
-                      .col.s3
-                        i.material-icons keyboard_arrow_right
-                li.collection-item
-                  a(href='/catalog/genre/create')
-                    .row
-                      .col.s9
-                        p.collections-title Create New Genre
-                      .col.s3
-                        i.material-icons keyboard_arrow_right
-                li.collection-item
-                  a(href='/catalog/tag/create')
-                    .row
-                      .col.s9
-                        p.collections-title Create New Tag
-                      .col.s3
-                        i.material-icons keyboard_arrow_right
-        // work collections end
-        .fixed-action-btn.click-to-toggle
-          a.btn-floating.btn-large.red
-            i.large.material-icons.right add
-          ul
-            li
-              a(href='/catalog/book/create').btn-floating.blue
-                i.material-icons queue
-            li
-              a(href='/catalog/author/create').btn-floating.red
-                i.material-icons person_add
-            li
-              a(href='/catalog/genre/create').btn-floating.yellow.darken-1
-                i.material-icons playlist_add
-            li
-              a(href='/catalog/tag/create').btn-floating.green
-                i.material-icons title
-              // ////////////////////////////////////////////////////////////////////////////
-            // end container
-          // END CONTENT
-        // END WRAPPER
-      // END MAIN
-      // ////////////////////////////////////////////////////////////////////////////
-      // START FOOTER
-    footer.page-footer.gradient-45deg-light-blue-cyan
-      .footer-copyright
-        .container
-          span
-            | Copyright ©
-            script(type='text/javascript').
-              document.write(new Date().getFullYear());
-            a.grey-text.text-lighten-2(href='#', target='_blank') Abbaxee
-            |  All rights reserved.
-          span.right.hide-on-small-only Abbaxee
-    // END FOOTER
+        span
+          | Copyright ©
+          script(type='text/javascript').
+            document.write(new Date().getFullYear());
+          a.grey-text.text-lighten-2(href='#', target='_blank') Abbaxee
+          |  All rights reserved.
+        span.right.hide-on-small-only Abbaxee
+
+  // END FOOTER

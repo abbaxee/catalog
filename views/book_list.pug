@@ -15,12 +15,12 @@ block content
               li.collection-item
                 a(href=book.url)
                   .row
-                    .col.s2
+                    .col.s12.m2
                       img(style='max-height: 102px; max-width: 100px' src="/images/"+book.image, alt="", srcset="")
-                    .col.s6
+                    .col.s10.m7
                       p.collections-title !{book.title} 
                       | (#{book.author.name})
-                    .col.s4
+                    .col.s2.m3
                       i.material-icons keyboard_arrow_right
             else
               li 
