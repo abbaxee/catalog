@@ -1,27 +1,34 @@
 extends layout
 
 block content
-  h1 #{title}: #{genre.name}
+  br
+  .row
+    .col.s0.m2
+    .col.s12.m8
+      .card-panel
+        div
+          h4 #{title}: #{genre.name}
   
-  if genre_books.length
-  
-    p #[strong Delete the following books before attempting to delete this genre.]
-  
-    div(style='margin-left:20px;margin-top:20px')
+          if genre_books.length
+          
+            p #[strong Delete the following books before attempting to delete this genre.]
+            hr
+            h4 Books
+            table.highlight
+              each book in genre_books
+                tbody
+                  tr
+                    td 
+                      a(href=book.url style='color: #5A5A5A')  
+                        i.material-icons.left book 
+                        | !{book.title}
 
-      h4 Books
-    
-      dl
-      each book in genre_books
-        dt 
-          a(href=book.url) #{book.title}
-        dd #{book.summary}
 
-  else
-    p Do you really want to delete this Genre?
-    
-    form(method='POST' action='')
-      div.form-group
-        input#genreid.form-control(type='hidden',name='genreid', required='true', value=genre._id )
+          else
+            p Do you really want to delete this Genre?
+            
+            form(method='POST' action='')
+              div.form-group
+                input#genreid.form-control(type='hidden',name='genreid', required='true', value=genre._id )
 
-      button.btn.btn-primary(type='submit') Delete
+              button.btn.blue(type='submit') Delete

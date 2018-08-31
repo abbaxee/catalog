@@ -1,13 +1,29 @@
 extends layout
 
 block content
-  h1= title
-  
-  ul
-  each book in book_list
-    li 
-      a(href=book.url) #{book.title} 
-      | (#{book.author.name})
-
-  else
-    li There are no books.
+  .container
+    br
+    br  
+    #work-collections
+      .row
+        .col.s12
+          ul.collection.z-depth-1
+            li.collection-item.avatar
+              i.material-icons.cyan.circle card_travel
+              h5.collection-header #{title}
+            each book in book_list
+              li.collection-item
+                a(href=book.url)
+                  .row
+                    .col.s2
+                      img(style='max-height: 102px; max-width: 100px' src="/images/"+book.image, alt="", srcset="")
+                    .col.s6
+                      p.collections-title !{book.title} 
+                      | (#{book.author.name})
+                    .col.s4
+                      i.material-icons keyboard_arrow_right
+            else
+              li 
+                .row
+                  .col.s9
+                    p.collections-title There are no books.

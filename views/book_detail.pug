@@ -1,29 +1,40 @@
 extends layout
 
 block content
-  h1 #{title}: #{book.title}
-  
-  p #[strong Author:] 
-    a(href=book.author.url) #{book.author.name}
-  p #[strong Summary:] #{book.summary}
-  p #[strong ISBN:] #{book.isbn}
-  p #[strong Genre:]&nbsp;
-    each val in book.genre
-      a(href=val.url) #{val.name}
-      |, 
-  
-  div(style='margin-left:20px;margin-top:20px')
-    h4 Tags
-    
-    each val in tags
-      ul
-        li #{val.name}
-    else
-      p There are no tag for this book.
+  .row
+    .col.s0.m2
+    .col.s12.m8
+      .card-panel
+        br
+        h5 #{title}: !{book.title}
 
-    
-  hr
-  p
-    a(href=book.url+'/delete') Delete Book
-  p
-    a(href=book.url+'/update') Update Book
+        img(style='max-height: 320px' src='/images/' +book.image, alt="book img")
+        
+        h5 
+          i.material-icons.prefix.blue.circle person 
+          | &nbsp;&nbsp; Author: 
+          a(href=book.author.url) #{book.author.name}
+        p #[strong Summary:] #{book.summary}
+        p #[strong ISBN:] #{book.isbn}
+        p #[strong Genre:]&nbsp;
+          each val in book.genre
+            a(href=val.url) #{val.name}
+            |, 
+        p 
+          i.material-icons.prefix.blue.circle title
+          | &nbsp;&nbsp; 
+          each tag in tags
+            a(href=tag.url) #{tag.name}
+            | &nbsp;|&nbsp;
+          else
+            p There are no tag for this book.
+          
+        hr
+        p
+          a.waves-effect.waves-light.btn.blue(href=book.url+'/update') 
+            i.material-icons.left edit
+            | Update Book
+          | &nbsp;&nbsp;&nbsp;&nbsp;
+          a.waves-effect.waves-light.btn.blue(href=book.url+'/delete')
+            i.material-icons.left delete
+            | Delete Book

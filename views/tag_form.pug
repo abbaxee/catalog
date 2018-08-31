@@ -1,26 +1,34 @@
 extends layout
 
 block content
-  h1=title
+  br
+  .row
+    .col.s0.m2
+    .col.s12.m8
+      .card-panel
+        h6.blue-text.active #{title}
+        form(method='POST' action='')
+          .row
+            .input-field.col.s12
+              i.material-icons.prefix title
+              input#name.validate(type='text', name='name' required='true' value=(undefined===tag ? '' : tag.name) )
+              label(for='name') Tag Name (course code, topic, ect..)
+            div.col.s12
+              h6 Select Books:
+              div
+                for book in book_list
+                  div(style='display: block; padding-right:10px;')
+                    input.checkbox-input.cyan(type='checkbox', name='book', id=book._id, value=book._id, checked=book.checked )
+                    label(for=book._id) #{book.title}
+            br
+            br
+            .col.s12.l12
+              button.btn.waves-effect.waves-light.blue(type='submit')
+                | Submit
+                i.material-icons.right send
+      if errors 
+        ul
+          for error in errors
+            li!= error.msg
 
-  form(method='POST' action='')
-
-    div.form-group
-      label(for='name') Tag Name:
-      input#name.form-control(type='text' placeholder='Tag Name' name='name' required='true' value=(undefined===tag ? '' : tag.name))
-
-    div.form-group
-      label Book:
-      div
-        for book in book_list
-          div
-          input.checkbox-input(type='checkbox', name='book', id=book._id, value=book._id, checked=book.checked )
-          label(for=book._id) #{book.title}
-          br
-
-    button.btn.btn-primary(type='submit') Submit
-
-  if errors 
-    ul
-      for error in errors
-        li!= error.msg
+  

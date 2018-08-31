@@ -25,3 +25,26 @@ ul.success li {
   border-color: #ebccd1;
   list-style: none;
 }
+
+
+
+h5 { font-weight: 400; }
+
+.container {
+  margin-top: 80px;
+  width: 400px;
+  height: 70%; 
+}
+
+.tabs .indicator {
+  background-color: #e0f2f1;
+  height: 60px;
+  opacity: 0.3;
+}
+
+.form-container {
+  padding: 40px;
+  padding-top: 10px;
+}
+
+.confirmation-tabs-btn { position: absolute; }

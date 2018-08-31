@@ -5,6 +5,8 @@ var Tag = require('../models/tag');
 
 var async = require('async');
 
+
+
 exports.index = function(req, res) {   
     
     async.parallel({
@@ -28,11 +30,12 @@ exports.index = function(req, res) {
 // Display list of all books
 exports.book_list = function(req, res, next) {
     
-      Book.find({}, 'title author ')
+      Book.find({}, 'title image author')
         .populate('author')
         .exec(function (err, list_books) {
           if (err) { return next(err); }
           //Successful, so render
+          console.log(list_books);
           res.render('book_list', { title: 'Book List', book_list: list_books });
         });
         
@@ -89,7 +92,11 @@ exports.book_create_post = function(req, res, next) {
         req.body.genre=new Array(req.body.genre);
     }
     
-    
+    if (req.file){
+        console.log('Uploading File...');
+        var bookimage = req.file.filename;
+      }
+
     req.checkBody('title', 'Title must not be empty.').notEmpty();
     req.checkBody('author', 'Author must not be empty').notEmpty();
     req.checkBody('summary', 'Summary must not be empty').notEmpty();
@@ -109,7 +116,8 @@ exports.book_create_post = function(req, res, next) {
         author: req.body.author, 
         summary: req.body.summary,
         isbn: req.body.isbn,
-        genre: (typeof req.body.genre==='undefined') ? [] : req.body.genre
+        genre: (typeof req.body.genre==='undefined') ? [] : req.body.genre,
+        image: bookimage
     });
         
     console.log('BOOK: ' + book);
@@ -224,6 +232,11 @@ exports.book_update_get = function(req, res, next) {
 // Handle book update on POST 
 exports.book_update_post = function(req, res, next) {
     
+    if (req.file){
+        console.log('Uploading File...');
+        var bookimage = req.file.filename;
+    }
+
     //Sanitize id passed in. 
     req.sanitize('id').escape();
     req.sanitize('id').trim();
@@ -242,14 +255,14 @@ exports.book_update_post = function(req, res, next) {
     req.sanitize('author').trim(); 
     req.sanitize('summary').trim();
     req.sanitize('isbn').trim();
-    req.sanitize('genre').escape();
     
     var book = new Book(
       { title: req.body.title, 
         author: req.body.author, 
         summary: req.body.summary,
         isbn: req.body.isbn,
-        genre: (typeof req.body.genre==='undefined') ? [] : req.body.genre.split(","),
+        genre: req.body.genre,
+        image: bookimage,
         _id:req.params.id //This is required, or a new ID will be assigned!
        });
     

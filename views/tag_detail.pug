@@ -1,17 +1,39 @@
 extends layout
 
 block content
+  
+  .row
+    .col.s0.m2
+    .col.s12.m8
+      .card-panel
+        div
+          i.material-icons.cyan.circle title
+          h4.center-align Tag: #{tag.name}
+        hr
+        h4 Books
+        table.highlight
+          each book in tag.books
+            tbody
+              tr
+                td 
+                  a(href=book.url style='color: #5A5A5A')
+                    i.material-icons.left book 
+                    | !{book.title}
 
-  h1 Tag: #{tag.name}
+          else
+            tbody
+              tr  
+                td This author has no books.
+    
   
-  each val in tag.books
-    p #[strong Title:]  
-      a(href=val.url) #{val.title}
-  
-  hr
-  p
-    a(href=tag.url+'/delete') Delete Tag
-  p
-    a(href=tag.url+'/update') Update Tag
+        hr
+        p
+          a.waves-effect.waves-light.btn.blue(href=tag.url+'/update') 
+            i.material-icons.left edit
+            | Update Tag
+          | &nbsp;&nbsp;&nbsp;&nbsp;
+          a.waves-effect.waves-light.btn.blue(href=tag.url+'/delete')
+            i.material-icons.left delete
+            | Delete Tag
 
   

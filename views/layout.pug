@@ -1,39 +1,115 @@
 doctype html
 html(lang='en')
   head
-    title= title
-    meta(charset='utf-8')
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title #{title}
+    // CORE CSS
+    link(href='/css/materialize.css', type='text/css', rel='stylesheet')
+    link(href='/css/style.css', type='text/css', rel='stylesheet')
+    // Custome CSS
+    link(href='/css/custom/custom.css', type='text/css', rel='stylesheet')
+    // INCLUDED PLUGIN CSS ON THIS PAGE
+    link(href='/vendors/perfect-scrollbar/perfect-scrollbar.css', type='text/css', rel='stylesheet')
+    //- 
+      ================================================
+      Scripts
+      ================================================
+    // jQuery Library
+    script(type='text/javascript', src='/vendors/jquery-3.2.1.min.js')
+    // materialize js
+    script(type='text/javascript', src='/js/materialize.js')
+    script.
+      $(document).ready(function(){
+        $('.fixed-action-btn').floatingActionButton();
+      });
+
+      $(document).ready(function(){
+        $('.datepicker').datepicker();
+      });
+    // scrollbar
+    script(type='text/javascript', src='/vendors/perfect-scrollbar/perfect-scrollbar.min.js')
+    // plugins.js - Some Specific JS codes for Plugin Settings
+    script(type='text/javascript', src='/js/plugins.js')
   body
-    div(class='container-fluid')
-      div(class='row')
-        div(class='col-sm-2')
-          block sidebar
-            ul(class='sidebar-nav')
-              li 
-                a(href='/catalog') Home
-              li 
-                a(href='/catalog/books') All books
-              li 
-                a(href='/catalog/authors') All authors
-              li 
-                a(href='/catalog/genres') All genres
-              li 
-                a(href='/catalog/tag') All Tags
-              li 
-                hr
-              li 
-                a(href='/catalog/author/create') Create new author
-              li 
-                a(href='/catalog/genre/create') Create new genre
-              li 
-                a(href='/catalog/book/create') Create new book
-              li 
-                a(href='/catalog/tag/create') Create new tag
-                
-        div(class='col-sm-10')
-          block content
+    //- // Start Page Loading
+    //- #loader-wrapper
+    //-   #loader
+    //-   .loader-section.section-left
+    //-   .loader-section.section-right
+    // End Page Loading
+    // ////////////////////////////////////////////////////////////////////////////
+    // START HEADER
+    header#header.page-topbar
+      // start header nav
+      .navbar-fixed
+        nav.navbar-color.gradient-45deg-light-blue-cyan
+          .nav-wrapper
+            ul.left
+              li
+                h1.logo-wrapper
+                  a.brand-logo.darken-1(href='index.html')
+                    span.logo-text.hide-on-med-and-down Smart Library
+            .header-search-wrapper.hide-on-med-and-down
+              i.material-icons search
+              input.header-search-input.z-depth-2(type='text', name='Search', placeholder='Explore Library')
+            ul.right.hide-on-med-and-down
+              // TODO right nav items
+      // end header nav
+    // END HEADER
+    // ////////////////////////////////////////////////////////////////////////////
+    // START MAIN
+    #main
+      // START WRAPPER
+      .wrapper
+        // START LEFT SIDEBAR NAV
+        aside#left-sidebar-nav
+          ul#slide-out.side-nav.fixed.leftside-navigation
+            li.user-details.cyan.darken-2
+              .row
+                .col.col.s4.m4.l4
+                  img.circle.responsive-img.valign.profile-image.cyan(src='/images/avatar/avatar-7.png', alt='')
+                .col.col.s8.m8.l8
+                  ul#profile-dropdown-nav.dropdown-content
+                    li
+                      a.grey-text.text-darken-1(href='#')
+                        i.material-icons face
+                        |  Profile
+                    li
+                      a.grey-text.text-darken-1(href='/users/logout')
+                        i.material-icons keyboard_tab
+                        |  Logout
+                  a.btn-flat.dropdown-button.waves-effect.waves-light.white-text.profile-btn(href='#', data-activates='profile-dropdown-nav')
+                    | John Doe
+                    i.mdi-navigation-arrow-drop-down.right
+                  p.user-roal Administrator
+            li.no-padding
+              ul.collapsible(data-collapsible='accordion')
+                li.bold
+                  a.waves-effect.waves-cyan(href='/')
+                    i.material-icons dashboard
+                    span.nav-text Dashboard
+                li.bold
+                  a.waves-effect.waves-cyan(href='/catalog/books')
+                    i.material-icons book
+                    span.nav-text Books
+                li.bold
+                  a.waves-effect.waves-cyan(href='/catalog/authors')
+                    i.material-icons person
+                    span.nav-text Authors
+                li.bold
+                  a.waves-effect.waves-cyan(href='/catalog/genres')
+                    i.material-icons folder
+                    span.nav-text Genres
+                li.bold
+                  a.waves-effect.waves-cyan(href='/catalog/tag')
+                    i.material-icons format_size
+                    span.nav-text Tags
+          a.sidebar-collapse.btn-floating.btn-medium.waves-effect.waves-light.hide-on-large-only(href='#', data-activates='slide-out')
+            i.material-icons menu
+        // END LEFT SIDEBAR NAV
+        // ////////////////////////////////////////////////////////////////////////////
+        // START CONTENT
+        != messages()
+        block content

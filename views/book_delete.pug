@@ -1,12 +1,15 @@
 extends layout
 
 block content
-  h1 #{title}: #{book.name}  
-  
-  p Do you really want to delete this Book?
-	
-  form(method='POST' action='')
-    div.form-group
-      input#bookid.form-control(type='hidden',name='bookid', required='true', value=book._id )
-
-    button.btn.btn-primary(type='submit') Delete
+  br
+  .row
+    .col.s0.m2
+    .col.s12.m8
+      .card-panel
+        h3 #{title}: #{book.title}  
+        
+        p Do you really want to delete this Book?
+        
+        form(method='POST' action='')
+          input#bookid(type='hidden',name='bookid', required='true', value=book._id )
+          button.btn.blue(type='submit') Delete

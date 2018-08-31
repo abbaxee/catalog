@@ -1,12 +1,17 @@
 extends layout
 
 block content
-  h1 #{title}: #{tag.name}  
-  
-  p Do you really want to delete this Tag?
-	
-  form(method='POST' action='')
-    div.form-group
-      input#tagid.form-control(type='hidden',name='tagid', required='true', value=tag._id )
+  br
+  .row
+    .col.s0.m2
+    .col.s12.m8
+      .card-panel
+        h4 #{title}: #{tag.name}  
+        
+        p Do you really want to delete this Tag?
+        
+        form(method='POST' action='')
+          div.form-group
+            input#tagid.form-control(type='hidden',name='tagid', required='true', value=tag._id )
 
-    button.btn.btn-primary(type='submit') Delete
+          button.btn.blue(type='submit') Delete
