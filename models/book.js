@@ -11,6 +11,11 @@ var BookSchema = Schema({
   image: {type: String}
 });
 
+// Define Index
+BookSchema.index({
+  title: 'text'
+});
+
 // Virtual for book's URL
 BookSchema
 .virtual('url')

@@ -1,34 +1,37 @@
 extends layout
 
 block content
-  br
-  .row
-    .col.s0.m2
-    .col.s12.m8
-      .card-panel
-        div
-          h4 #{title}: #{author.name}
+  if user.role == 'ADMIN'
+    section#short_content    
+      br
+      .row
+        .col.s0.m2
+        .col.s12.m8
+          .card-panel
+            div
+              h4 #{title}: #{author.name}
+      
+              if author_books.length
+              
+                p 
+                  strong Delete the following books before attempting to delete this author.
+                hr
+                h4 Books
+                table.highlight
+                  each book in author_books
+                    tbody
+                      tr
+                        td 
+                          a(href=book.url style='color: #5A5A5A')  
+                            i.material-icons.left book 
+                            | !{book.title}
+
+              else
+                p Do you really want to delete this Author?
+                
+                form(method='POST' action='')
+                  div.form-group
+                    input#authorid.form-control(type='hidden',name='authorid', required='true', value=author._id )
+
+                  button.btn.blue(type='submit') Delete
   
-          if author_books.length
-          
-            p #[strong Delete the following books before attempting to delete this author.]
-            hr
-            h4 Books
-            table.highlight
-              each book in genre_books
-                tbody
-                  tr
-                    td 
-                      a(href=book.url style='color: #5A5A5A')  
-                        i.material-icons.left book 
-                        | !{book.title}
-
-          else
-            p Do you really want to delete this Author?
-            
-            form(method='POST' action='')
-              div.form-group
-                input#authorid.form-control(type='hidden',name='authorid', required='true', value=author._id )
-
-              button.btn.blue(type='submit') Delete
-

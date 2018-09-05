@@ -1,23 +1,24 @@
 extends layout
 
 block content
-  br
-  .row
-    .col.s0.m2
-    .col.s12.m8
-      .card-panel
-        h6.blue-text.active #{title}
-        form(method='POST' action='')
-          .row
-            .input-field.col.s12
-              i.material-icons.prefix folder
-              input#name.validate(type='text', name='name' required='true' value=(undefined===genre ? '' : genre.name) )
-              label(for='name') Genre(Fantasy, Poetry etc.)
-            .col.s12.l12
-              button.btn.waves-effect.waves-light.blue(type='submit')
-                | Submit
-                i.material-icons.right send
-      if errors 
-        ul
-          for error in errors
-            li!= error.msg
+  section#short_content    
+    br
+    .row
+      .col.s0.m2
+      .col.s12.m8
+        .card-panel
+          h6.blue-text.active #{title}
+          form(method='POST' action='')
+            .row
+              .input-field.col.s12
+                i.material-icons.prefix folder
+                input#name.validate(type='text', name='name' required='true' value=(undefined===genre ? '' : genre.name) )
+                label(for='name') Genre(Fantasy, Poetry etc.)
+              .col.s12.l12
+                button.btn.waves-effect.waves-light.blue(type='submit')
+                  | Submit
+                  i.material-icons.right send
+        if errors 
+          ul
+            for error in errors
+              li!= error.msg

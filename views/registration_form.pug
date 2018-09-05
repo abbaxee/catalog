@@ -1,37 +1,42 @@
 extends form_layout
 
 block content
-  if errors
-    each error, i in errors
-      div.reg_error #{error.msg}
-  .container.white.z-depth-2
-    ul.tabs.teal
-      li.tab.col.s6
-        a.white-text.active #{title}
+  .row
+    .col.s0.m4
+    .col.s12.m4
       
-    .row
-      form(method='POST', action='').col.s12
-        .form-container
-          h5.teal-text Enter email and password
-          .row
-            .input-field.col.s12
-              input#name.validate(type='text', name='name')
-              label(for='name') Name
-          .row
-            .input-field.col.s12
-              input#email.validate(type='email', name='email')
-              label(for='email') Email
-          .row
-            .input-field.col.s12
-              input#password.validate(type='password', name='password')
-              label(for='password') Password
-          .row
-            .input-field.col.s12
-              input#password2.validate(type='password', name='password2')
-              label(for='password2') Confirm Password  
-          br
-          .center
-            button.btn.waves-effect.waves-light.teal(type='submit') Register 
-            br
-            br
-            a(href='/users/login') Already have an account? Login
+      if errors
+        each error, i in errors
+          div.reg_error #{error.msg}
+      
+      .container.white.z-depth-2
+        ul.tabs.teal.hide-on-small-only
+          li.tab.col.s6
+            a.white-text.active #{title}
+          
+        .row
+          form(method='POST', action='').col.s12
+            .form-container
+              h5.teal-text Enter registration detail
+              .row
+                .input-field.col.s12
+                  input#name.validate(type='text', name='name')
+                  label(for='name') Name
+              .row
+                .input-field.col.s12
+                  input#email.validate(type='email', name='email')
+                  label(for='email') Email
+              .row
+                .input-field.col.s12
+                  input#password.validate(type='password', name='password')
+                  label(for='password') Password
+              .row
+                .input-field.col.s12
+                  input#password2.validate(type='password', name='password2')
+                  label(for='password2') Confirm Password  
+              br
+              .center
+                button.btn.waves-effect.waves-light.teal(type='submit') Register 
+                br
+                br
+                a(href='/users/login') Already have an account? Login

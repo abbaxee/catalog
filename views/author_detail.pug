@@ -1,39 +1,40 @@
 extends layout
 
 block content
-  .row
-    .col.s0.m2
-    .col.s12.m8
-      .card-panel
-        div
-          i.material-icons.cyan.circle person
-          h4.center-align Author: #{author.name}
-          h6.center-align #{author.date_of_birth_formatted} - #{author.date_of_death_formatted}
-        hr
-        h4 Books
-        table.highlight
-          each book in author_books
-            tbody
-              tr  
-                td 
-                  a(href=book.url style='color: #5A5A5A')
-                    i.material-icons.left book 
-                    | !{book.title}
+  section#short_content
+    .row
+      .col.s0.m2
+      .col.s12.m8
+        .card-panel
+          div
+            i.material-icons.cyan.circle person
+            h4.center-align Author: #{author.name}
+            h6.center-align #{author.date_of_birth_formatted} - #{author.date_of_death_formatted}
+          hr
+          h4 Books
+          table.highlight
+            each book in author_books
+              tbody
+                tr  
+                  td 
+                    a(href=book.url style='color: #5A5A5A')
+                      i.material-icons.left book 
+                      | !{book.title}
 
-          else
-            tbody
-              tr  
-                td This author has no books.
-    
-  
-        hr
-        p
-          a.waves-effect.waves-light.btn.blue(href=author.url+'/update') 
-            i.material-icons.left edit
-            | Update Author
-          | &nbsp;&nbsp;&nbsp;&nbsp;
-          br
-          br
-          a.waves-effect.waves-light.btn.blue(href=author.url+'/delete')
-            i.material-icons.left delete
-            | Delete Author
+            else
+              tbody
+                tr  
+                  td This author has no books.
+      
+          if user.role == 'ADMIN'
+            hr
+            p
+              a.waves-effect.waves-light.btn.blue(href=author.url+'/update') 
+                i.material-icons.left edit
+                | Update Author
+              | &nbsp;&nbsp;&nbsp;&nbsp;
+              br
+              br
+              a.waves-effect.waves-light.btn.blue(href=author.url+'/delete')
+                i.material-icons.left delete
+                | Delete Author

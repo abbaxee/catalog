@@ -45,7 +45,7 @@ router.get('/books', ensureAuthenticated, book_controller.book_list);
 router.get('/author/create', ensureAuthenticated, author_controller.author_create_get);
 
 /* POST request for creating Author. */
-router.post('/author/create', author_controller.author_create_post);
+router.post('/author/create', ensureAuthenticated, author_controller.author_create_post);
 
 /* GET request to delete Author. */
 router.get('/author/:id/delete', author_controller.author_delete_get);
@@ -117,6 +117,9 @@ router.get('/tag', ensureAuthenticated, tag_controller.tag_list);
 
 // // POST request to update Tag
 // router.post('/tag/:id/update', );
+
+// Search API
+router.get('/api/search', book_controller.searchBooks);
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {

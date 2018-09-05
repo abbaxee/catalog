@@ -1,39 +1,39 @@
 extends layout
 
 block content
+  section#short_content  
+    .row
+      .col.s0.m2
+      .col.s12.m8
+        .card-panel
+          div
+            i.material-icons.cyan.circle folder
+            h4.center-align Genre: #{genre.name}
+          hr
+          h4 Books
+          table.highlight
+            each book in genre_books
+              tbody
+                tr
+                  td 
+                    a(href=book.url style='color: #5A5A5A')  
+                      i.material-icons.left book 
+                      | !{book.title}
 
-  .row
-    .col.s0.m2
-    .col.s12.m8
-      .card-panel
-        div
-          i.material-icons.cyan.circle folder
-          h4.center-align Genre: #{genre.name}
-        hr
-        h4 Books
-        table.highlight
-          each book in genre_books
-            tbody
-              tr
-                td 
-                  a(href=book.url style='color: #5A5A5A')  
-                    i.material-icons.left book 
-                    | !{book.title}
-
-          else
-            tbody
-              tr  
-                td This author has no books.
-    
-  
-        hr
-        p
-          a.waves-effect.waves-light.btn.blue(href=genre.url+'/update') 
-            i.material-icons.left edit
-            | Update Genre
-          | &nbsp;&nbsp;&nbsp;&nbsp;
-          br
-          br
-          a.waves-effect.waves-light.btn.blue(href=genre.url+'/delete')
-            i.material-icons.left delete
-            | Delete Genre
+            else
+              tbody
+                tr  
+                  td This author has no books.
+      
+          if user.role == 'ADMIN'
+            hr
+            p
+              a.waves-effect.waves-light.btn.blue(href=genre.url+'/update') 
+                i.material-icons.left edit
+                | Update Genre
+              | &nbsp;&nbsp;&nbsp;&nbsp;
+              br
+              br
+              a.waves-effect.waves-light.btn.blue(href=genre.url+'/delete')
+                i.material-icons.left delete
+                | Delete Genre

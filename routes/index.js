@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', ensureAuthenticated, function(req, res, next) {
-  res.redirect('/catalog');
+  res.redirect('/catalog/books');
 });
 
 

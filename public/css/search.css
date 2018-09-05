@@ -1,0 +1,20 @@
+
+.search__results a { 
+    background: white;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 5;
+    left: 0;
+    padding-left: 10px; 
+    line-height: 35px; 
+    color: black;
+    font-size: 14px;
+    /* border-bottom: 1px solid #cacaca; */
+    display: block;
+}
+
+.search__results a:hover{
+    background: #f1f1f1;
+}
+
+  

@@ -1,64 +1,65 @@
 extends layout
 
 block content
-  br
-  .row
-    .col.s0.m2
-    .col.s12.m8
-      .card-panel
-        h6.blue-text.active #{title}
-        form(method='POST' action='' enctype='multipart/form-data')
-          .row
-            .input-field.col.s12.l6
-              i.material-icons.prefix title
-              input#title.validate(type='text', name='title' required='true' value=(undefined===book ? '' : book.title) )
-              label(for='title') Title
-            .input-field.col.s12.l6
-              i.material-icons.prefix account_circle
-              select#author(type='select' name='author' required='true' )
-                for author in authors
-                  if book
-                    //- Handle GET form, where book.author is an object, and POST form, where it is a string.
-                    option.blue-text(
-                      value=author._id
-                      selected=(
-                        author._id.toString()==book.author._id
-                        || author._id.toString()==book.author
-                      ) ? 'selected' : false
-                    ) #{author.name}
-                  else
-                    option(value=author._id) #{author.name}
-              label(for='author') Author
-            .input-field.col.s12
-              i.material-icons.prefix description
-              input#isbn.validate(type='text', name='isbn'  required='true' value=(undefined===book ? '' : book.isbn) ) 
-              label(for='isbn') ISBN
-            .input-field.col.s12
-              i.material-icons.prefix mode_edit
-              textarea#summary.materialize-textarea(type='textarea', name='summary' required='true') #{undefined===book ? '' : book.summary}
-              label(for='summary') Summary
-            .input-field.col.s12  
-              .file-field.input-field
-                .btn.blue
-                  span File
-                  input(type='file' name='bookimage' value=(undefined===book ? '' : book.image))
-                .file-path-wrapper
-                  input.file-path.validate(type='text')
-            div.col.s12
-              h6 Genre:
-              div
-                for genre in genres
-                  div(style='display: inline; padding-right:10px;')
-                    input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
-                    label(for=genre._id) #{genre.name}
-            
-              br
-              br
-              br
-            button.btn.waves-effect.waves-light.blue(type='submit')
-              | Submit
-              i.material-icons.right send
-      if errors 
-        ul
-          for error in errors
-            li!= error.msg
+  section#long_content
+    br    
+    .row
+      .col.s0.m2
+      .col.s12.m8
+        .card-panel
+          h6.blue-text.active #{title}
+          form(method='POST' action='' enctype='multipart/form-data')
+            .row
+              .input-field.col.s12.l6
+                i.material-icons.prefix title
+                input#title.validate(type='text', name='title' required='true' value=(undefined===book ? '' : book.title) )
+                label(for='title') Title
+              .input-field.col.s12.l6
+                i.material-icons.prefix account_circle
+                select#author(type='select' name='author' required='true' )
+                  for author in authors
+                    if book
+                      //- Handle GET form, where book.author is an object, and POST form, where it is a string.
+                      option.blue-text(
+                        value=author._id
+                        selected=(
+                          author._id.toString()==book.author._id
+                          || author._id.toString()==book.author
+                        ) ? 'selected' : false
+                      ) #{author.name}
+                    else
+                      option(value=author._id) #{author.name}
+                label(for='author') Author
+              .input-field.col.s12
+                i.material-icons.prefix description
+                input#isbn.validate(type='text', name='isbn'  required='true' value=(undefined===book ? '' : book.isbn) ) 
+                label(for='isbn') ISBN
+              .input-field.col.s12
+                i.material-icons.prefix mode_edit
+                textarea#summary.materialize-textarea(type='textarea', name='summary' required='true') #{undefined===book ? '' : book.summary}
+                label(for='summary') Summary
+              .input-field.col.s12  
+                .file-field.input-field
+                  .btn.blue
+                    span File
+                    input(type='file' name='bookimage' value=(undefined===book ? '' : book.image))
+                  .file-path-wrapper
+                    input.file-path.validate(type='text')
+              div.col.s12
+                h6 Genre:
+                div
+                  for genre in genres
+                    div(style='display: inline; padding-right:10px;')
+                      input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
+                      label(for=genre._id) #{genre.name}
+              
+                br
+                br
+                br
+              button.btn.waves-effect.waves-light.blue(type='submit')
+                | Submit
+                i.material-icons.right send
+        if errors 
+          ul
+            for error in errors
+              li!= error.msg

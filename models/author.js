@@ -16,7 +16,7 @@ var AuthorSchema = Schema(
 AuthorSchema
 .virtual('name')
 .get(function () {
-  return this.family_name + ', ' + this.first_name;
+  return this.first_name + ' ' + this.family_name;
 });
 
 // Virtual for author's URL

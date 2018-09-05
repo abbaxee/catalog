@@ -19,6 +19,11 @@ var catalog = require('./routes/catalog');  //Import routes for "catalog" area o
 
 var app = express();
 
+app.locals.truncateText = function (text, length) { 
+  var truncatedText = text.substring(0, length);
+  return truncatedText;
+}
+
 //Set up mongoose connection
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://localhost/smartlibrary';

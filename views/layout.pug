@@ -11,33 +11,25 @@ html(lang='en')
     // Custome CSS
     link(href='/css/custom/custom.css', type='text/css', rel='stylesheet')
     // INCLUDED PLUGIN CSS ON THIS PAGE
-    link(href='/vendors/perfect-scrollbar/perfect-scrollbar.css', type='text/css', rel='stylesheet')
+    link(rel="stylesheet", href="/css/search.css")
     //- 
       ================================================
       Scripts
       ================================================
     // jQuery Library
-    script(type='text/javascript', src='/vendors/jquery-3.2.1.min.js')
+    script(type='text/javascript', src='/js/jquery-3.2.1.min.js')
     // materialize js
     script(type='text/javascript', src='/js/materialize.js')
-    script.
-      $(document).ready(function(){
-        $('.fixed-action-btn').floatingActionButton();
-      });
-
-      $(document).ready(function(){
-        $('.datepicker').datepicker();
-      });
-    // scrollbar
-    script(type='text/javascript', src='/vendors/perfect-scrollbar/perfect-scrollbar.min.js')
+    
     // plugins.js - Some Specific JS codes for Plugin Settings
     script(type='text/javascript', src='/js/plugins.js')
+    script(src="/js/search.js")
   body
-    //- // Start Page Loading
-    //- #loader-wrapper
-    //-   #loader
-    //-   .loader-section.section-left
-    //-   .loader-section.section-right
+    // Start Page Loading
+    #loader-wrapper
+      #loader
+      .loader-section.section-left
+      .loader-section.section-right
     // End Page Loading
     // ////////////////////////////////////////////////////////////////////////////
     // START HEADER
@@ -52,8 +44,10 @@ html(lang='en')
                   a.brand-logo.darken-1(href='index.html')
                     span.logo-text.hide-on-med-and-down Smart Library
             .header-search-wrapper
-              i.material-icons search
-              input.header-search-input.z-depth-2(type='text', name='Search', placeholder='Explore Library')
+              #search  
+                i.material-icons search
+                input.header-search-input.z-depth-2(type='text', name='search', placeholder='Explore Library')
+                .search__results
             ul.right.hide-on-med-and-down
               // TODO right nav items
       // end header nav
@@ -80,16 +74,23 @@ html(lang='en')
                       a.grey-text.text-darken-1(href='/users/logout')
                         i.material-icons keyboard_tab
                         |  Logout
-                  a.btn-flat.dropdown-button.waves-effect.waves-light.white-text.profile-btn(href='#', data-activates='profile-dropdown-nav')
-                    | John Doe
-                    i.mdi-navigation-arrow-drop-down.right
-                  p.user-roal Administrator
+                  if user.role == 'ADMIN'
+                    a.btn-flat.dropdown-button.waves-effect.waves-light.white-text.profile-btn(href='#', data-activates='profile-dropdown-nav')
+                      | #{user.name}
+                      i.mdi-navigation-arrow-drop-down.right
+                    p.user-roal Administrator
+                  if user.role == 'USER'
+                    a.btn-flat.dropdown-button.waves-effect.waves-light.white-text.profile-btn(href='#', data-activates='profile-dropdown-nav')
+                      | #{user.name}
+                      i.mdi-navigation-arrow-drop-down.right
+                    p.user-roal User
             li.no-padding
               ul.collapsible(data-collapsible='accordion')
-                li.bold
-                  a.waves-effect.waves-cyan(href='/')
-                    i.material-icons dashboard
-                    span.nav-text Dashboard
+                if user.role == 'ADMIN'
+                  li.bold
+                    a.waves-effect.waves-cyan(href='/catalog')
+                      i.material-icons dashboard
+                      span.nav-text Dashboard
                 li.bold
                   a.waves-effect.waves-cyan(href='/catalog/books')
                     i.material-icons book
@@ -106,10 +107,34 @@ html(lang='en')
                   a.waves-effect.waves-cyan(href='/catalog/tag')
                     i.material-icons format_size
                     span.nav-text Tags
-          a.sidebar-collapse.btn-floating.red.btn-medium.waves-effect.waves-light.hide-on-large-only(href='#', data-activates='slide-out')
+                li.bold
+                  a.btn.waves-effect.waves-light.gradient-45deg-red-pink(href='/catalog/tag/create')
+                    i.material-icons.white-text add
+                    | Create Tags
+          a.sidebar-collapse.btn-floating.transparent.btn-medium.waves-effect.waves-light.hide-on-large-only(href='#', data-activates='slide-out')
             i.material-icons menu
         // END LEFT SIDEBAR NAV
         // ////////////////////////////////////////////////////////////////////////////
         // START CONTENT
-        != messages()
       block content
+
+      block footer
+      // START FOOTER
+      footer.page-footer.gradient-45deg-light-blue-cyan
+        .footer-copyright
+          .container
+            .row
+              span.col.s12.m8
+                | Copyright © 
+                script(type='text/javascript').
+                  document.write(new Date().getFullYear());
+                a.grey-text.text-lighten-2(href='#', target='_blank') &nbsp; Smart Library
+                |  All rights reserved.
+              span.col.s12.m4 Developer: Abdullahi Aliyu
+
+      block scripts
+      script(src="/js/search.js")
+      script.
+        $(document).ready(function(){
+          $('.fixed-action-btn').floatingActionButton();
+        });

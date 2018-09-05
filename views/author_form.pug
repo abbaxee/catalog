@@ -1,48 +1,42 @@
 extends layout
 
 block content
-  br
-  .row
-    .col.s0.m2
-    .col.s12.m8
-      .card-panel
-        h6.blue-text.active #{title}
-        form(method='POST' action='')
-          .row
-            .input-field.col.s12.l6
-              i.material-icons.prefix person
-              input#first_name.validate(type='text', name='first_name' required='true' value=(undefined===author ? '' : author.first_name) )
-              label(for='family_name') First Name
-            .input-field.col.s12.l6
-              i.material-icons.prefix people
-              input#first_name.validate(type='text', name='family_name' required='true' value=(undefined===author ? '' : author.family_name) )
-              label(for='family_name') Family Name (surname)
-            .input-field.col.s12.l12
-              i.material-icons.prefix date_range
-              input#date_of_birth.datepicker.validate(type='text', name='date_of_birth' value=(undefined===author ? '' : author.date_of_birth) )
-              label(for='date_of_birth') Date of Birth
-            .input-field.col.s12.l12
-              i.material-icons.prefix date_range
-              input#date_of_death.datepicker.validate(type='text', name='date_of_death' value=(undefined===author ? '' : author.date_of_death) )
-              label(for='date_of_death') Date of Death            
-              br
-              br
-              br
-            .col.s12.l12
-              button.btn.waves-effect.waves-light.blue(type='submit')
-                | Submit
-                i.material-icons.right send
-      if errors 
-        ul
-          for error in errors
-            li!= error.msg
-  // Compiled and minified CSS
-  link(rel='stylesheet', href='/stylesheets/materialize.min.css')
-  // Compiled and minified JavaScript
-  script(src='/stylesheets/materialize.min.js')
-  script.
-    $(document).ready(function(){
-      $('.datepicker').datepicker({
-        yearRange: 100
-      });
-    });
+  section#short_content    
+    br
+    .row
+      .col.s0.m2
+      .col.s12.m8
+        .card-panel
+          h6.blue-text.active #{title}
+          form(method='POST' action='')
+            .row
+              .input-field.col.s12.l6
+                i.material-icons.prefix person
+                input#first_name.validate(type='text', name='first_name' required='true' value=(undefined===author ? '' : author.first_name) )
+                label(for='family_name') First Name
+              .input-field.col.s12.l6
+                i.material-icons.prefix people
+                input#first_name.validate(type='text', name='family_name' required='true' value=(undefined===author ? '' : author.family_name) )
+                label(for='family_name') Family Name (surname)
+              
+              p(for='date_of_birth') Date of Birth
+              .input-field.col.s12.l12 
+                i.material-icons.prefix date_range
+                input#date_of_birth.validate(type='date', name='date_of_birth' value=(undefined===author ? '' : author.date_of_birth) )
+              
+              p(for='date_of_death') Date of Death
+              .input-field.col.s12.l12
+                i.material-icons.prefix date_range
+                input#date_of_death.validate(type='date', name='date_of_death' value=(undefined===author ? '' : author.date_of_death) )
+    
+                br
+                br
+                br
+              .col.s12.l12
+                button.btn.waves-effect.waves-light.blue(type='submit')
+                  | Submit
+                  i.material-icons.right send
+        if errors 
+          ul
+            for error in errors
+              li!= error.msg

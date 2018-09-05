@@ -1,30 +1,43 @@
 extends form_layout
 
 block content
-  .container.white.z-depth-2  
-    ul.tabs.teal
-      li.tab.col.s6
-        a.white-text.active #{title}
-      
-    .row
-      form(method='POST', action='').col.s12
-        .form-container
-          h5.teal-text Enter email and password
-          .row
-            .input-field.col.s12
-              input#email.validate(type='email', name='username')
-              label(for='email') Email
-          .row
-            .input-field.col.s12
-              input#password.validate(type='password' name='password')
-              label(for='password') Password
+  .row
+    .col.s0.m4
+    .col.s12.m4
+      .container.white.z-depth-2  
+        ul.tabs.teal.hide-on-small-only
+          li.tab.col.s6
+            a.white-text.active #{title}
           
-          br
-          .center
-            button.btn.waves-effect.waves-light.teal(type='submit') Login 
-            br
-            br
-            a(href='/users/register') Create an account?
+        .row
+          form(method='POST', action='').col.s12
+            .form-container
+              h6.teal-text Enter email and password
+              .row 
+                .col.s1
+                  br
+                  br
+                  i.material-icons person
+                .col.s11
+                  .input-field
+                    input#email.validate(type='email', name='username')
+                    label(for='email') Email
+              .row
+                .col.s1
+                  br
+                  br
+                  i.material-icons lock
+                .col.s11
+                  .input-field.col.s12
+                    input#password.validate(type='password' name='password')
+                    label(for='password') Password
+              
+              br
+              .center
+                button.btn.waves-effect.waves-light.teal(type='submit') Login 
+                br
+                br
+                a(href='/users/register') Create an account?
 
   
       

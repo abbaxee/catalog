@@ -1,17 +1,19 @@
 extends layout
 
 block content
-  br
-  .row
-    .col.s0.m2
-    .col.s12.m8
-      .card-panel
-        h4 #{title}: #{tag.name}  
-        
-        p Do you really want to delete this Tag?
-        
-        form(method='POST' action='')
-          div.form-group
-            input#tagid.form-control(type='hidden',name='tagid', required='true', value=tag._id )
+  if user.role == 'ADMIN'  
+    section#short_content    
+      br
+      .row
+        .col.s0.m2
+        .col.s12.m8
+          .card-panel
+            h4 #{title}: #{tag.name}  
+            
+            p Do you really want to delete this Tag?
+            
+            form(method='POST' action='')
+              div.form-group
+                input#tagid.form-control(type='hidden',name='tagid', required='true', value=tag._id )
 
-          button.btn.blue(type='submit') Delete
+              button.btn.blue(type='submit') Delete

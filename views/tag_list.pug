@@ -1,25 +1,26 @@
 extends layout
 
 block content
-  br
-  br  
-  #work-collections
-    .row
-      .col.s12
-        ul.collection.z-depth-1
-          li.collection-item.avatar
-            i.material-icons.cyan.circle title
-            h5.collection-header #{title}
-          each tag in tag_list
-            li.collection-item
-              a(href=tag.url)
+  section#long_content  
+    br
+    br  
+    #work-collections
+      .row
+        .col.s12
+          ul.collection.z-depth-1
+            li.collection-item.avatar
+              i.material-icons.cyan.circle title
+              h5.collection-header #{title}
+            each tag in tag_list
+              li.collection-item
+                a(href=tag.url)
+                  .row
+                    .col.s10.m8
+                      p.collections-title !{tag.name} 
+                    .col.s2.m4
+                      i.material-icons keyboard_arrow_right
+            else
+              li 
                 .row
-                  .col.s10.m8
-                    p.collections-title !{tag.name} 
-                  .col.s2.m4
-                    i.material-icons keyboard_arrow_right
-          else
-            li 
-              .row
-                .col.s9
-                  p.collections-title There are no Genres.
+                  .col.s9
+                    p.collections-title There are no Genres.

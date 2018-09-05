@@ -6,7 +6,7 @@ var Book = require('../models/book');
 exports.author_list = function(req, res, next) {
     
       Author.find()
-        .sort([['family_name', 'ascending']])
+        .sort([['first_name', 'ascending']])
         .exec(function (err, list_authors) {
           if (err) { return next(err); }
           //Successful, so render
@@ -43,9 +43,8 @@ exports.author_create_get = function(req, res, next) {
 // Handle Author create on POST 
 exports.author_create_post = function(req, res, next) {
     
-     req.checkBody('first_name', 'First name must be specified.').notEmpty(); //We won't force Alphanumeric, because people might have spaces.
+     req.checkBody('first_name', 'First name must be specified.').notEmpty();
      req.checkBody('family_name', 'Family name must be specified.').notEmpty();
-     req.checkBody('family_name', 'Family name must be alphanumeric text.').isAlpha();
      req.checkBody('date_of_birth', 'Invalid date').optional({ checkFalsy: true }).isISO8601();
      req.checkBody('date_of_death', 'Invalid date').optional({ checkFalsy: true }).isISO8601();
      

@@ -71,7 +71,9 @@ exports.book_create_get = function(req, res, next) {
   //Get all authors and genres, which we can use for adding to our book.
   async.parallel({
       authors: function(callback) {
-          Author.find(callback);
+          Author.find()
+          .sort([['first_name', 'ascending']])
+          .exec(callback);
       },
       genres: function(callback) {
           Genre.find(callback);
@@ -300,3 +302,19 @@ exports.book_update_post = function(req, res, next) {
     }
 
 };
+
+exports.searchBooks =  function(req, res){
+    Book.find({
+        $text: {
+            $search: req.query.q,
+        }
+    }, {
+        score: {$meta: 'textScore'}
+    },
+     function(err, books){
+        res.json(books);
+    })
+    .sort({
+        score: {$meta: 'textScore'}
+    }).limit(5);
+}

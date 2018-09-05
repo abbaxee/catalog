@@ -1,27 +1,28 @@
 extends layout
 
 block content
-  .container
-    br
-    br  
-    #work-collections
-      .row
-        .col.s12
-          ul.collection.z-depth-1
-            li.collection-item.avatar
-              i.material-icons.cyan.circle person
-              h5.collection-header #{title}
-            each author in author_list
-              li.collection-item
-                a(href=author.url)
+  section#long_content  
+    .container
+      br
+      br  
+      #work-collections
+        .row
+          .col.s12
+            ul.collection.z-depth-1
+              li.collection-item.avatar
+                i.material-icons.cyan.circle person
+                h5.collection-header #{title}
+              each author in author_list
+                li.collection-item
+                  a(href=author.url)
+                    .row
+                      .col.s10.m8
+                        p.collections-title !{author.name} 
+                        | (#{author.date_of_birth_formatted} - #{author.date_of_death_formatted})
+                      .col.s2.m4
+                        i.material-icons keyboard_arrow_right           
+              else
+                li 
                   .row
-                    .col.s10.m8
-                      p.collections-title !{author.name} 
-                      | | (#{author.date_of_birth_formatted} - #{author.date_of_death_formatted})
-                    .col.s2.m4
-                      i.material-icons keyboard_arrow_right
-            else
-              li 
-                .row
-                  .col.s9
-                    p.collections-title There are no Authors.
+                    .col.s9
+                      p.collections-title There are no Authors.
