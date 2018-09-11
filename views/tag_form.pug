@@ -22,7 +22,7 @@ block content
                   for book in book_list
                     div(style='display: block; padding:5px;')
                       input.checkbox-input.cyan(type='checkbox', name='book', id=book._id, value=book._id, checked=book.checked )
-                      label(for=book._id) #{book.title}
+                      label(for=book._id) !{book.title}
                 br
                 br
               .col.s12.l12

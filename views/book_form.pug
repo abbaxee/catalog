@@ -36,7 +36,7 @@ block content
                 label(for='isbn') ISBN
               .input-field.col.s12
                 i.material-icons.prefix mode_edit
-                textarea#summary.materialize-textarea(type='textarea', name='summary' required='true') #{undefined===book ? '' : book.summary}
+                textarea#summary.materialize-textarea(type='textarea', name='summary' required='true') !{undefined===book ? '' : book.summary}
                 label(for='summary') Summary
               .input-field.col.s12  
                 .file-field.input-field

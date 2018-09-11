@@ -9,7 +9,7 @@ var UserSchema = mongoose.Schema({
     email: { type: String, index: true, required: true, max: 100},
     name: { type: String, required: true, max: 100},
     password: { type: String, required: true, max: 100 }, 
-    role: {type: String, enum: ['ADMIN','USER'], default: 'ADMIN'}
+    role: {type: String, enum: ['ADMIN','USER'], default: 'USER'}
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);
