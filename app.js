@@ -26,7 +26,7 @@ app.locals.truncateText = function (text, length) {
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://localhost/smartlibrary';
+var mongoDB = 'mongodb://abbaxee:abba1234@ds135594.mlab.com:35594/local_library';
 mongoose.connect(mongoDB);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
