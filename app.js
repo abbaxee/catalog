@@ -1,17 +1,17 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+// var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+// var LocalStrategy = require('passport-local').Strategy;
 var expressValidator = require('express-validator');
-var multer = require('multer');
-var upload = multer({dest: './uploads'});
+// var multer = require('multer');
+// var upload = multer({dest: './uploads'});
 var flash = require('connect-flash');
-var bcrypt = require('bcryptjs');
+// var bcrypt = require('bcryptjs');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
